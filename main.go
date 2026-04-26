@@ -295,6 +295,8 @@ func openEditor(filePath string, flagEditor string, vscode bool) {
 		editor = defaultEditor
 	case os.Getenv("EDITOR") != "":
 		editor = os.Getenv("EDITOR")
+	case runtime.GOOS == "windows":
+		editor = "notepad.exe"
 	default:
 		fmt.Fprintf(os.Stderr, "No editor configured (set TODAY_EDITOR or EDITOR)\n")
 		return
